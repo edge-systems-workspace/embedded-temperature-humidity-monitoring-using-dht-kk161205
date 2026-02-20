@@ -1,54 +1,65 @@
-#include <Arduino.h>
-/**
- * @file main.ino
- * @brief Embedded Temperature and Humidity Monitoring using DHT11
- * @author YOUR_NAME
- * @date YYYY-MM-DD
- *
- * @details
- * This program reads environmental data from the DHT11 sensor
- * and displays temperature and humidity values on Serial Monitor.
- * Students must complete the TODO sections.
- */
 
 #include <DHT.h>
 
-// TODO 1:
-// Define the DHT data pin (Use digital pin 2)
+// ==========================
+// Configuration Section
+// ==========================
 
-// TODO 2:
-// Define the DHT sensor type (DHT11)
+#define DHTPIN   2       ///< Digital pin connected to DATA
+#define DHTTYPE  DHT11   ///< Define DHT11 sensor type
 
-// TODO 3:
-// Create a DHT object using the defined pin and sensor type
+DHT dht(DHTPIN, DHTTYPE);
 
-void setup() {
+const unsigned long READ_INTERVAL = 2000;  ///< Sensor read interval in milliseconds
 
-    // TODO 4:
-    // Initialize Serial communication (9600 baud rate)
+// ==========================
+// Function Prototypes
+// ==========================
 
-    // TODO 5:
-    // Initialize the DHT sensor
+/**
+ * @brief Arduino setup function
+ *
+ * Initializes Serial communication and DHT sensor.
+ */
+void setup();
 
-    // TODO 6:
-    // Print a system initialization message
+/**
+ * @brief Arduino main loop
+ *
+ * Periodically reads temperature and humidity data,
+ * validates readings, and prints structured output.
+ */
+void loop();
+
+// ==========================
+// Function Definitions
+// ==========================
+
+void setup()
+{
+    // Initialize Serial Communication
+    Serial.begin(9600);
+
+    Serial.println("====================================");
+    Serial.println("  DHT11 Temperature & Humidity Monitor");
+    Serial.println("  System Initializing...");
+    Serial.println("====================================");
+
+    // Initialize DHT Sensor
+    dht.begin();
+
+    Serial.println("Sensor initialization complete.");
+    Serial.println("Reading environmental data...\n");
 }
 
-void loop() {
+void loop()
+{
+    // Wait for defined interval
+    delay(READ_INTERVAL);
 
-    // TODO 7:
-    // Read humidity value from sensor
+    // Read sensor values
+    float humidity    = dht.readHumidity();
+    float temperature = dht.readTemperature();   // Celsius
 
-    // TODO 8:
-    // Read temperature value from sensor
 
-    // TODO 9:
-    // Check if either reading failed using isnan()
-    // If failed, print error message and return
-
-    // TODO 10:
-    // Print formatted temperature and humidity values
-
-    // TODO 11:
-    // Add a 2-second delay before next reading
 }
