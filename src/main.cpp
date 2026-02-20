@@ -62,4 +62,30 @@ void loop()
     float temperature = dht.readTemperature();   // Celsius
 
 
+    // ==========================
+    // Validation Section
+    // ==========================
+
+    if (isnan(humidity) || isnan(temperature))
+    {
+        Serial.println("[ERROR] Failed to read from DHT11 sensor.");
+        Serial.println("Verify wiring and sensor condition.\n");
+        return;
+    }
+
+    // ==========================
+    // Structured Output Section
+    // ==========================
+
+    Serial.println("----------- Environmental Data -----------");
+
+    Serial.print("Temperature : ");
+    Serial.print(temperature, 1);
+    Serial.println(" °C");
+
+    Serial.print("Humidity    : ");
+    Serial.print(humidity, 1);
+    Serial.println(" %");
+
+    Serial.println("------------------------------------------\n");
 }
