@@ -1,3 +1,24 @@
+/**
+* @file main.ino
+ * @brief Embedded Temperature & Humidity Monitoring using DHT11
+ * @author kk161205
+ * @date 2026-02-20
+ *
+ * @details
+ * This program implements a structured environmental monitoring system
+ * using the DHT11 sensor with Arduino Uno R4.
+ *
+ * Features:
+ * - Initializes Serial communication
+ * - Initializes DHT11 sensor
+ * - Reads temperature and humidity
+ * - Validates sensor readings
+ * - Prints structured formatted output
+ *
+ * Library Required:
+ * - Adafruit DHT Sensor Library
+ */
+
 
 #include <DHT.h>
 
