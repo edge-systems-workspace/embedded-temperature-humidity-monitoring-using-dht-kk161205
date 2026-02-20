@@ -31,7 +31,8 @@
 
 DHT dht(DHTPIN, DHTTYPE);
 
-unsigned long previousMillis = 0;  ///< Stores last sensor read time (for future millis() upgrade)
+const unsigned long READ_INTERVAL = 2000;  ///< Sensor read interval
+unsigned long previousMillis = 0;          ///< Stores last sensor read time
 
 // ==========================
 // Function Prototypes
