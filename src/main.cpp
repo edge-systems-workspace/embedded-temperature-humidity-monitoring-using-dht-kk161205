@@ -31,7 +31,7 @@
 
 DHT dht(DHTPIN, DHTTYPE);
 
-const unsigned long READ_INTERVAL = 2000;  ///< Sensor read interval in milliseconds
+unsigned long previousMillis = 0;  ///< Stores last sensor read time (for future millis() upgrade)
 
 // ==========================
 // Function Prototypes
@@ -75,9 +75,18 @@ void setup()
 
 void loop()
 {
-    // Wait for defined interval
-    delay(READ_INTERVAL);
+    // ==========================================
+    // Timing Control Section (Non-blocking ready)
+    // ==========================================
 
+    /*
+     * NOTE:
+     * Currently using delay().
+     * Structure prepared for future replacement with millis()
+     * for non-blocking execution.
+     */
+
+    delay(READ_INTERVAL);
     // Read sensor values
     float humidity    = dht.readHumidity();
     float temperature = dht.readTemperature();   // Celsius
